@@ -1,0 +1,136 @@
+
+<div>
+    <h3>Status</h3>
+    <div *ngFor="let s of statuses">
+      StatusId: {{s.id}}, Name: {{s.name}} <button type="button" (click)="deleteStatus(s.id)">Delete</button> | <button type="submit" (click)="onEditStatus(s)">Edit</button>
+    </div>
+  
+    <h3>Add Status</h3>
+    <div>
+      <form #addStatus="ngForm" (ngSubmit)="onAddStatus(addStatus)">
+        <label>Name</label>
+        <input type="text" ngModel name="name">
+        <button type="submit">Save</button>
+      </form>
+    </div>
+    <h3>Edit Status</h3>
+    <div>
+      <form #editStatusForm="ngForm" (ngSubmit)="onUpdateStatus(editStatusForm)">
+        <input type="hidden" ngModel="{{editStatus?.id}}" name="id">
+        <label>Name</label>
+        <input type="text" ngModel="{{editStatus?.name}}" name="name">
+        <button type="submit">Save</button>
+      </form>
+    </div>
+</div> 
+
+<div>
+    <h3>Costumers</h3>
+    <div *ngFor="let c of costumers">
+      CostumerId: {{c.id}}, Name: {{c.firstName}}, Lastname: {{c.lastName}}
+    </div>
+  
+    <h3>Add Costumer</h3>
+    <div>
+      <form #addCostumer="ngForm" (ngSubmit)="onAddCostumer(addCostumer)">
+        <label>First Name</label>
+        <input type="text" ngModel name="firstName">
+        <label>Last Name</label>
+        <input type="text" ngModel name="lastName">
+        <label>Address</label>
+        <input type="text" ngModel name="address">
+        <label>Phone</label>
+        <input type="text" ngModel name="phone">
+        <label>Description</label>
+        <input type="text" ngModel name="description">
+        <label for="city">City</label>
+        <select name="city" [(ngModel)]= "selectedCity">
+            <option  *ngFor="let c of cities" [value]="c.id">{{c.name}}</option>
+        </select>
+        <button type="submit">Save</button>
+      </form>
+    </div>
+</div>
+
+<div>
+    <h3>Supplier</h3>
+    <div *ngFor="let s of suppliers">
+      SuuplierId: {{s.id}}, Name: {{s.firstName}}, Lastname: {{s.lastName}}
+    </div>
+  
+    <h3>Add Supplier</h3>
+    <div>
+      <form #addSupplier="ngForm" (ngSubmit)="onAddSupplier(addSupplier)">
+        <label>First Name</label>
+        <input type="text" ngModel name="firstName">
+        <label>Last Name</label>
+        <input type="text" ngModel name="lastName">
+        <label>Address</label>
+        <input type="text" ngModel name="address">
+        <label>Phone</label>
+        <input type="text" ngModel name="phone">
+        <label>Description</label>
+        <input type="text" ngModel name="description">
+        <label for="city">City</label>
+        <select name="city" [(ngModel)]= "selectedCity">
+            <option  *ngFor="let c of cities" [value]="c.id">{{c.name}}</option>
+        </select>
+        <button type="submit">Save</button>
+      </form>
+    </div>
+
+    <h3>Purchase Orders</h3>
+    <div *ngFor="let po of purchaseOrders">
+      POID: {{po.id}}, Quantity: {{po.quantity}}, Supplier: {{po.supplier.firstName}}, ProductID: {{po.product.id}}
+    </div>
+  
+    <h3>Add Purchase Order</h3>
+    <div>
+      <form #addPurchaseOrder="ngForm" (ngSubmit)="onAddPurchaseOrder(addPurchaseOrder)">
+        <label>Description</label>
+        <input type="text" ngModel name="description">
+        <label>Quantity</label>
+        <input type="number" ngModel name="quantity">
+        <label for="supplier">Supplier</label>
+        <select name="supplier" [(ngModel)]= "selectedSupplier">
+            <option  *ngFor="let s of suppliers" [value]="s.id">{{s.firstName}}</option>
+        </select>
+        <label for="product">Product</label>
+        <select name="product" [(ngModel)]= "selectedProduct">
+            <option  *ngFor="let p of products" [value]="p.id">{{p.eurocode}}: {{p.model.brand.name}}, {{p.model.name}}</option>
+        </select>
+        <label for="status">Status</label>
+        <select name="status" [(ngModel)]= "selectedStatus">
+            <option  *ngFor="let s of statuses" [value]="s.id">{{s.name}}</option>
+        </select>
+        <button type="submit">Save</button>
+      </form>
+    </div>
+    <h3>Sales Orders</h3>
+    <div *ngFor="let s of salesOrders">
+      SOID: {{s.id}}, Quantity: {{s.quantity}}, Supplier: {{s.costumer.firstName}}, ProductID: {{s.product.id}}
+    </div>
+  
+    <h3>Add Sales Order</h3>
+    <div>
+      <form #addSalesOrder="ngForm" (ngSubmit)="onAddSalesOrder(addSalesOrder)">
+        <label>Description</label>
+        <input type="text" ngModel name="description">
+        <label>Quantity</label>
+        <input type="number" ngModel name="quantity">
+        <label for="costumer">Costumer</label>
+        <select name="costumer" [(ngModel)]= "selectedCostumer">
+            <option  *ngFor="let s of costumers" [value]="s.id">{{s.firstName}}, {{s.city.name}}, {{s.city.country.name}}</option>
+        </select>
+        <label for="product">Product</label>
+        <select name="product" [(ngModel)]= "selectedProduct">
+            <option  *ngFor="let p of products" [value]="p.id">{{p.eurocode}}: {{p.model.brand.name}}, {{p.model.name}}</option>
+        </select>
+        <label for="status">Status</label>
+        <select name="status" [(ngModel)]= "selectedStatus">
+            <option  *ngFor="let s of statuses" [value]="s.id">{{s.name}}</option>
+        </select>
+        <button type="submit">Save</button>
+      </form>
+    </div>
+</div>   

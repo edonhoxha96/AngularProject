@@ -1,0 +1,23 @@
+<div>
+    <h2>{{stock?.productSupplier?.product?.eurocode}} - {{stock?.productSupplier?.product?.model?.brand?.name}} - {{stock?.productSupplier?.product?.model?.name}} - {{stock?.productSupplier?.product?.years?.name}} - {{stock?.productSupplier?.supplier?.firstName}}</h2>
+    <h2>{{stock?.depot?.name}} - {{stock?.sector?.name}} - {{stock?.quantity}} copë - {{stock?.productSupplier?.sellingPrice | currency: 'EUR'}} </h2>
+</div>
+<div class="col-md-6">
+    <form #sellForm="ngForm" (ngSubmit)="sellProd(sellForm)">
+        <div class="form-group">
+            <label for="costumer">Costumer</label>
+            <select class="form-control" name="costumer" [(ngModel)]= "selectedCostumer">
+                <option  *ngFor="let s of costumers" [value]="s.id">{{s.firstName}}, {{s.city.name}}, {{s.city.country.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="quantity">Quantity to sell</label>
+            <input class="form-control" type="number" ngModel name="quantity" value="1" min="1" max="{{stock?.quantity}}" >
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input class="form-control" type="number" ngModel name="price" min="1" >
+        </div>
+        <button class="btn btn-success" type="submit">Sell</button>
+    </form>
+</div>

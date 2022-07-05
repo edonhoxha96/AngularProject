@@ -1,0 +1,47 @@
+<div id="app">
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">Auto Xhama Center</a>
+    <ul class="navbar-nav mr-auto" routerLinkActive="active">
+      <li class="nav-item">
+        <a href="/products" class="nav-link" routerLink="products">Products </a>
+      </li>
+      <li class="nav-item">
+        <a href="/find" class="nav-link" routerLink="find">Find Product</a>
+      </li>
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a href="/sales" class="nav-link" routerLink="sales">Sales</a>
+      </li>
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a href="/depot" class="nav-link" routerLink="depot">Depot</a>
+      </li>
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a href="/inserts" class="nav-link" routerLink="inserts">Inserts</a>
+      </li>
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a href="/pos" class="nav-link" routerLink="pos">POS</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+      <li class="nav-item">
+        <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+      </li>
+      <li class="nav-item">
+        <a href="/login" class="nav-link" routerLink="login">Login</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <li class="nav-item">
+        <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+      </li>
+      <li class="nav-item">
+        <a href class="nav-link" (click)="logout()">LogOut</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

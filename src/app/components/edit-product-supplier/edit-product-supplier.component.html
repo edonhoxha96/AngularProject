@@ -1,0 +1,24 @@
+
+<div class="col-md-6">
+    <h3 class="text-center">Product Supplier</h3>
+    <form #editProductSupplier="ngForm" (ngSubmit)="onEditProductSupplier(editProductSupplier)">
+    <div><h2>{{productSupplier?.product?.eurocode}} - {{productSupplier?.product?.model?.name}} - {{productSupplier?.product?.years?.name}} - {{productSupplier?.supplier?.firstName}}</h2></div>    
+    <div class="form-group">
+        <label for="buyingPrice">Buying Price</label>
+        <input class="form-control" type="number" step=".01" ngModel="{{productSupplier?.buyingPrice}}" name="buyingPrice">
+    </div>
+    <div class="form-group">
+        <label for="sellingPrice">Selling Price</label>
+        <input class="form-control" type="number" step=".01" ngModel="{{productSupplier?.sellingPrice}}" name="sellingPrice">
+    </div>
+    
+        <button class="btn btn-success" type="submit">Save</button>
+    </form>
+    <br>
+    <!-- <div class="alert alert-success" *ngIf="message">
+        <h2>{{message}}</h2>
+    </div>
+    <div class="alert alert-danger" *ngIf="errorMessage">
+        <h2>{{errorMessage}}</h2>
+    </div> -->
+  </div>

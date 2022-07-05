@@ -1,0 +1,94 @@
+<div>
+  <form #searchForm='ngForm' (ngSubmit)="searchEuro(searchForm)" ngNativeValidate>
+    <input type="text" ngModel name="search" required>
+    <button type="submit">Search</button>
+  </form>
+</div>
+<h3>Products</h3>
+<div *ngFor="let product of filteredProducts" style="display: inline-flex;">
+  <mat-card style="max-width: 300px; background-color: gray; margin: 20px;">
+    <mat-card-header>
+      <mat-card-title>{{product.eurocode}}</mat-card-title>
+      <mat-card-subtitle>{{product.model.brand.name}} {{product.model.name}} {{product.years.name}}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <img *ngIf="product.image != null" mat-card-image src='{{"http://localhost:8080/files/" + product.image}}'
+      alt="glass">
+    <mat-card-content>
+      <!-- <div>Quantity: {{getQuantity(product.id)}}</div> -->
+      <div>Suppliers: {{getProductSuppliersMap(product.id)}}</div>
+      <div *ngFor="let recipient of suppliersMap | keyvalue" class="card-style">
+        <span class="name">{{recipient.key.supplier.firstName}} </span>
+        <span class="price">Price: {{recipient.key.sellingPrice}}</span>
+        <span class="qty">Qty: {{recipient.value}}</span>
+      </div>
+      <div>
+        <!-- {{getPropertiessByProduct(product.id)}} -->
+        <div style="display: inline-flex;">Properties:
+          <div *ngFor="let prop of getPropertiessByProduct(product.id)">
+            <p *ngIf="prop">{{prop.name}}, </p>
+          </div>
+        </div>
+        <div style="display: inline-flex;">Body Variants:
+          <div *ngFor="let bv of getBodyVariantsByProduct(product.id)">
+            <div>{{bv.name}}, </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+    <!-- <mat-card-actions *ngIf="stock.depot.id == 1">
+      <form #moveStockForm="ngForm" (ngSubmit)= "moveStock(moveStockForm, stock)">
+        <label for="quantity">Move</label>
+        <input type="number" ngModel name="quantity">
+        <button type="submit">Send to Depot 2</button>
+      </form>
+    </mat-card-actions> -->
+    <mat-card-actions class="j-between d-flex">
+      <button class="butoniii" [routerLink]="['/stock', product.id]">
+        <span class="btn-text">See Stock</span>
+      </button>
+      <button class="butoniii" [routerLink]="['/edit-product', product.id]">
+        <span class="btn-text">Edit</span>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+</div>
+<div>
+  <a [routerLink]="['/models']">Models</a>
+</div>
+
+
+<!-- <h3>Stock:</h3>
+
+<form #filterProductsForm="ngForm" (ngSubmit)="filterProducts(filterProductsForm)">
+  <select name="depot" [(ngModel)]="selectedDepoF">
+    <option [value]="undefined" selected disabled>Select Depot</option>
+    <option *ngFor="let d of depots" [value]="d.id">{{d.id}},{{d.name}}</option>
+  </select>
+  <button type="submit">Filter</button>
+</form>
+<div *ngFor="let stock of stocks " style="display: inline-flex;"> -->
+<!-- EUROCODE: {{stock.product.eurocode}}, {{stock.product.glassType.name}} quantity: {{stock.quantity}}, depot: {{stock.depot.name}}, {{stock.depot.address}}, {{stock.depot.city.name}} -->
+<!-- <div>
+    <mat-card style="max-width: 300px; background-color: gray; margin: 20px;">
+      <mat-card-header>
+        <mat-card-title>{{stock.product.eurocode}}</mat-card-title>
+        <mat-card-subtitle>{{stock.product.model.brand.name}} {{stock.product.model.name}} {{stock.product.years}}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="./assets/Glass.jpg" alt="glass">
+      <mat-card-content>
+        {{stock.depot.name}}, {{stock.depot.city.name}} stock: {{stock.quantity}}, Sector: {{stock.sector.name}}
+        <p *ngIf="stock.depot2"> {{stock.depot2.name}}, {{stock.depot2.city.name}} stock: {{stock.quantity2}}</p>
+      </mat-card-content>
+      <mat-card-actions *ngIf="stock.depot.id == 1">
+        <form #moveStockForm="ngForm" (ngSubmit)= "moveStock(moveStockForm, stock)">
+          <label for="quantity">Move</label>
+          <input type="number" ngModel name="quantity">
+          <button type="submit">Send to Depot 2</button>
+        </form>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>-->

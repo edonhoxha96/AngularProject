@@ -1,0 +1,25 @@
+<div class="">  
+    <button class=" btn btn-success" [routerLink]="['/add-year']" >New</button>
+    <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let y of years">
+        <td>{{y.id}}</td>
+        <td>{{y.name}}</td>
+        <td>
+          <button class=" btn btn-primary" [routerLink]="['/edit-year', y.id]" >Edit</button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteYear(y.id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+    </table>
+  </div>

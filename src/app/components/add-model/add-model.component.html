@@ -1,0 +1,29 @@
+<div class="col-md-6">
+    <h2 class="text-center">Add Model</h2>
+    <form #addModel="ngForm" (ngSubmit)="onAddModel(addModel)">
+
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" name="name" ngModel class="form-control" id="name" required>
+      </div>
+      <!-- <label>Brand:</label>
+      <select name="brand" [(ngModel)]= "selectedBrand">
+          <option  *ngFor="let brand of brands" [value]="brand.id">{{brand.name}}</option>
+      </select> -->
+      <div class="form-group">
+        <label for="model">Model</label>
+        <input class="form-control" list="brands" [(ngModel)]="selectedBrand" name="brand" required>
+          <datalist id="brands" name= "" >
+              <option *ngFor="let brand of brands" [value]="brand.id">{{brand.name}} </option>
+          </datalist>
+      </div>
+      <button button class="btn btn-success">Save</button>
+      <button class="btn btn-danger ml-2 " (click)="onCancel()">Cancel</button>
+    </form>
+    <div class="alert alert-success" *ngIf="message">
+      <h2>{{message}}</h2>
+    </div>
+    <div class="alert alert-danger" *ngIf="errorMessage">
+      <h2>{{errorMessage}}</h2>
+    </div>
+  </div>

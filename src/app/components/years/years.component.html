@@ -1,0 +1,8 @@
+<h2>Select Year</h2>
+<div  style="display: flex; justify-content: flex-start;">
+    <div *ngFor="let year of years">
+        <div style="margin-right: 20px;">
+            <button class="btn btn-outline-primary btn-lg" (click)="nextStep(year.id)">{{year.name}}</button>
+        </div>
+    </div>
+</div>

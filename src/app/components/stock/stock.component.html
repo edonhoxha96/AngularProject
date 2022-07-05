@@ -1,0 +1,74 @@
+<div *ngIf="productLoaded | async" style="display: flex;">
+    <div>
+        <img src='{{"http://localhost:8080/files/" + product.image}}' style="width: 500px; height: 500px;" alt="test">
+    </div>
+    <div style="margin: 40px;">
+        <h1><strong>{{product.eurocode}} - {{product.model.brand.name}} - {{product.model.name}} -
+                {{product.years.name}}</strong></h1>
+                <h2><strong>Glass Type:</strong> {{product.glassType.name}}</h2>
+                <h2><strong>Tinting:</strong> {{product.tinting.name}}</h2>
+        <div style="display: flex; width:100%">
+            <div class="description" style="width: 50%;">
+                <h2><strong>Properties:</strong></h2>
+                <ul *ngFor="let p of properties">
+                    <li style="font-size: large;">{{p.name}}</li>
+                </ul>
+            </div>
+            <div class="description" style="width: 50%;">
+                <h2><strong>Body Variants:</strong></h2>
+                <ul *ngFor="let b of bodyVariants">
+                    <li style="font-size: large;">{{b.name}}</li>
+                </ul>
+           </div>
+        </div>        
+    </div>
+</div>
+<!-- <h2>ID: {{id}}</h2>
+<div>
+    <h3>Stock</h3>
+    <div *ngFor="let stock of stocks">
+        <div>
+            stockId: {{stock.id}},ProdID: {{stock.productSupplier.product.id}} , Name: {{stock.productSupplier.product.eurocode}}, Depo: {{stock.depot.name}}, Sector: {{stock.sector.name}}
+            Quantity: {{stock.quantity}}, Supplier: {{stock.productSupplier.supplier.firstName}}, Price: {{stock.productSupplier.sellingPrice}}€
+        </div>
+        <div>
+            <button><a [routerLink]="['/sell', stock.id]">Sell</a></button>
+            <button *ngIf="stock.depot.id == 1"><a [routerLink]="['/move', stock.id]">Move</a></button>
+        </div>
+    </div>
+</div> -->
+<div class="container pb-4">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>EuroCode</th>
+                <th>Depot</th>
+                <th>Sector</th>
+                <th>Supplier</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Sell</th>
+                <th>Move</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let stock of stocks">
+                <td>{{stock.id}}</td>
+                <td>{{stock.productSupplier.product.eurocode}}</td>
+                <td>{{stock.depot.name}}</td>
+                <td>{{stock.sector.name}}</td>
+                <td>{{stock.productSupplier.supplier.firstName}}</td>
+                <td>{{stock.quantity}}</td>
+                <td>{{stock.productSupplier.sellingPrice}}€</td>
+                <td>
+                    <button class=" btn btn-primary" [routerLink]="['/sell', stock.id]">Sell</button>
+                </td>
+                <td>
+                    <button *ngIf="stock.depot.id == 1" class="btn btn-danger"
+                        [routerLink]="['/move', stock.id]">Move</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

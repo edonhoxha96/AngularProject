@@ -1,0 +1,13 @@
+.addProduct {
+    display: flex;
+    justify-content: center;
+}
+
+.addProduct h3{
+    font-size: large;
+}
+
+.addProduct label{
+    font-size: large;
+    margin-right: 15px;
+}

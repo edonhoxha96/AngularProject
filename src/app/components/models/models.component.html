@@ -1,0 +1,27 @@
+<div class="">  
+    <button class=" btn btn-success" [routerLink]="['/add-model']" >New</button>
+    <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let m of models">
+        <td>{{m.id}}</td>
+        <td>{{m.name}}</td>
+        <td>{{m.brand.name}}</td>
+        <td>
+          <button class=" btn btn-primary" [routerLink]="['/edit-model', m.id]" >Edit</button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteModel(m.id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+    </table>
+  </div>

@@ -1,0 +1,40 @@
+<div class="col-md-6">
+    <h3 class="text-center">Product Supplier</h3>
+    <form #addProductSupplier="ngForm" (ngSubmit)="onAddProductSupplier(addProductSupplier)">
+    <div class="form-group">
+        <label for="buyingPrice">Buying Price</label>
+        <input class="form-control" type="number" step=".01" ngModel name="buyingPrice">
+    </div>
+    <div class="form-group">
+        <label for="sellingPrice">Selling Price</label>
+        <input class="form-control" type="number" step=".01" ngModel name="sellingPrice">
+    </div>
+    <div class="form-group">
+        <label for="product">Product</label>
+        <input class="form-control" list="products" [(ngModel)]="selectedProduct" name="product" required>
+        <datalist id="products" name= "" >
+            <option *ngFor="let p of products" [value]="p.id">{{p.eurocode}}, {{p.model.name}} </option>
+        </datalist>
+    </div>
+    <!-- <div class="form-group">
+        <label for="product">Product</label>
+          <select class="form-control" name="product" [(ngModel)]= "selectedProduct">
+              <option  *ngFor="let p of products" [value]="p.id">{{p.eurocode}}, {{p.model.name}}</option>
+          </select>
+    </div> -->
+    <div class="form-group">
+        <label for="supplier">Supplier</label>
+          <select class="form-control" name="supplier" [(ngModel)]= "selectedSupplier">
+              <option  *ngFor="let sup of suppliers" [value]="sup.id">{{sup.firstName}}</option>
+          </select>
+    </div>
+        <button class="btn btn-success" type="submit">Save</button>
+    </form>
+    <br>
+    <div class="alert alert-success" *ngIf="message">
+        <h2>{{message}}</h2>
+    </div>
+    <div class="alert alert-danger" *ngIf="errorMessage">
+        <h2>{{errorMessage}}</h2>
+    </div>
+  </div>

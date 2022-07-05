@@ -1,0 +1,35 @@
+<div class="col-md-6">
+    <h3>Register Stock</h3>
+    <form #addStock="ngForm" (ngSubmit)="onAddStock(addStock)">
+    <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input class="form-control" type="number" ngModel name="quantity" min="0">
+    </div>
+    <div class="form-group">
+        <label>Depot</label>
+         <select class="form-control" name="depot" [(ngModel)]="selectedDepot">
+           <option *ngFor="let depot of depots" [value]="depot.id">{{depot.name}}</option>
+         </select><br>
+    </div>
+    <div class="form-group">
+        <label for="sector">Sector</label>
+         <select class="form-control" name="sector" [(ngModel)]= "selectedSector">
+            <option  *ngFor="let s of sectors" [value]="s.id">{{s.name}}</option>
+         </select> 
+    </div>
+    <!-- <div class="form-group">
+        <label for="productSupplier">Product and Supplier</label>
+        <select class="form-control" name="productSupplier" [(ngModel)]= "selectedProductSupplier">
+           <option  *ngFor="let s of productSuppliers" [value]="s.id">{{s.product.eurocode}} - {{s.product.model.name}} - {{s.supplier.firstName}}</option>
+        </select>   
+    </div> -->
+    <div class="form-group">
+      <label for="productSupplier">Product and Supplier</label>
+      <input class="form-control" list="products" [(ngModel)]="selectedProductSupplier" name="productSupplier" required>
+      <datalist id="products" name= "" >
+          <option *ngFor="let p of productSuppliers" [value]="p.id">{{p.product.eurocode}} - {{p.product.model.name}} - {{p.product.years.name}} - {{p.supplier.firstName}} </option>
+      </datalist>
+    </div>
+      <button class="btn btn-success" type="submit">Save</button>
+    </form>
+  </div>

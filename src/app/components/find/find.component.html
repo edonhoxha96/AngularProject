@@ -1,0 +1,17 @@
+<h1>Select Brand</h1>
+<!-- <div *ngFor="let brand of brands">
+    <a [routerLink]="['/models', brand.id]">{{brand.name}}</a>
+</div> -->
+
+<div *ngFor="let b of sortedBrands | keyvalue" >
+    <div class="mt-3" *ngIf="b.value.size != 0">
+        <div>{{b.key}}</div>
+        <div class="test">
+            <div class="col-md-3" *ngFor="let mod of b.value">
+                <a [routerLink]="['/models', mod.id]">{{mod.name}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div id="letter-main"></div> -->

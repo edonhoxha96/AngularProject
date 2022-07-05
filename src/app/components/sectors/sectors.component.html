@@ -1,0 +1,25 @@
+<div class="">  
+    <button class=" btn btn-success" [routerLink]="['/add-sector']" >New</button>
+    <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of sectors">
+        <td>{{s.id}}</td>
+        <td>{{s.name}}</td>
+        <td>
+          <button class=" btn btn-primary" [routerLink]="['/edit-sector', s.id]" >Edit</button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteSector(s.id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+    </table>
+  </div>

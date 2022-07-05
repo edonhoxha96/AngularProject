@@ -1,0 +1,110 @@
+
+  <div class="d-grid gap-2 col-6 mx-auto">
+    <button type="button" class="btn btn-lg btn-primary" [routerLink]="['/models']">Models</button>
+    <button type="button" class="btn btn-lg btn-primary" [routerLink]="['/brands']">Brands</button>
+    <button type="button" class="btn btn-lg btn-primary" [routerLink]="['/year']">Years</button>
+    <button type="button" class="btn btn-lg btn-primary" [routerLink]="['/sectors']">Sectors</button>
+  </div>
+
+  
+  <div style="border: 2px;">
+    <h3>Country</h3>
+    <div *ngFor="let country of countries">
+      Country: {{country.name}}
+    </div>
+  
+    <h3>Add Country</h3>
+    <div>
+      <form #addCountry="ngForm" (ngSubmit)="onAddCountry(addCountry)">
+        <label>Name</label>
+        <input type="text" ngModel name="name">
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+
+  <div>
+    <h3>Cities</h3>
+  <div *ngFor="let city of cities">
+    City: {{city.name}}, Country: {{city.country.name}}
+  </div>
+
+  <h3>Add City</h3>
+  <div>
+    <form #addCity="ngForm" (ngSubmit)="onAddCity(addCity)">
+      <label>Name</label>
+      <input type="text" ngModel name="name">
+      <label>Country</label>
+      <!-- <input type="number" ngModel name="brand"> -->
+      <select name="country" [(ngModel)]= "selectedCountry">
+          <option  *ngFor="let country of countries" [value]="country.id">{{country.name}}</option>
+      </select>
+      <button type="submit">Save</button>
+    </form>
+  </div>
+  </div>
+
+  <h3>GlassTypes</h3>
+  <div *ngFor="let glasstype of glassTypes">
+    Glass Type: {{glasstype.id}}, Name: {{glasstype.name}}
+  </div>
+  <h3>Add GlassType</h3>
+  <div>
+    <form #addGlassType="ngForm" (ngSubmit)="onAddGlassType(addGlassType)">
+      <label>Name</label>
+      <input type="text" ngModel name="name">
+      <button type="submit">Save</button>
+    </form>
+  </div>
+
+  <h3>BodyVariants</h3>
+  <div *ngFor="let bodyvariant of bodyVariants">
+    Body Variant: {{bodyvariant.id}}, Name: {{bodyvariant.name}}
+  </div>
+  <h3>Add BodyVariant</h3>
+  <div>
+    <form #addBodyVariant="ngForm" (ngSubmit)="onAddBodyVariant(addBodyVariant)">
+      <label>Name</label>
+      <input type="text" ngModel name="name">
+      <button type="submit">Save</button>
+    </form>
+  </div>
+  <h3>Properties</h3>
+  <div *ngFor="let prop of properties">
+    Properties: {{prop.id}}, Name: {{prop.name}}
+  </div>
+  <h3>Add Property</h3>
+  <div>
+    <form #addProperties="ngForm" (ngSubmit)="onAddProperties(addProperties)">
+      <label>Name</label>
+      <input type="text" ngModel name="name">
+      <button type="submit">Save</button>
+    </form>
+  </div>
+  <h3>Tintings</h3>
+  <div *ngFor="let tint of tintings">
+    Tintings: {{tint.id}}, Name: {{tint.name}}
+  </div>
+  <h3>Add Tinting</h3>
+  <div>
+    <form #addTintings="ngForm" (ngSubmit)="onAddTintings(addTintings)">
+      <label>Name</label>
+      <input type="text" ngModel name="name">
+      <button type="submit">Save</button>
+    </form>
+  </div>
+  <h3>Taxes</h3>
+  <div *ngFor="let taxe of taxes">
+    Taxes: {{taxe.id}}, Name: {{taxe.name}}, Value:{{taxe.value}}                  
+  </div>
+  <h3>Add Tax</h3>
+  <div>
+    <form #addTaxes="ngForm" (ngSubmit)="onAddTaxes(addTaxes)">
+      <label>Name</label>
+      <input type="text" ngModel name="name">
+      <label>Value</label>
+      <input type="number" ngModel name="value">
+      <button type="submit">Save</button>
+    </form>
+  </div>
+  

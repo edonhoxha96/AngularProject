@@ -1,0 +1,81 @@
+<div>
+    <mat-form-field appearance="fill">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+          <input matStartDate formControlName="start" placeholder="Start date">
+          <input matEndDate formControlName="end" placeholder="End date">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      
+        <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+        <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+      </mat-form-field>
+      <button class="btn btn-primary" (click)= "filterDate()">filter</button>
+</div>
+<!-- <div *ngFor="let s of filteredSales">
+    ID: {{s.id}}, Eurocode: {{s.product.eurocode}}, Quantity: {{s.quantity}}, created: {{s.created | date: 'medium'}}, update: {{s.updated | date: 'short'}}  | Price: {{s.sellingPrice | currency:'EUR'}}
+</div> -->
+
+
+<div>
+  <!-- <form #filterSectorForm="ngForm" (ngSubmit)= "filterSector(filterSectorForm)">
+    <select name="sector" [(ngModel)]="selectedSector">
+      <option value="0" selected>All</option>
+      <option *ngFor="let s of sectors" [value]="s.id">{{s.name}}</option>
+    </select>
+    <button type="submit">Filter Sector</button>
+  </form> -->
+</div>
+<div>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">EuroCode</th>
+            <th scope="col">Supplier</th>
+            <th scope="col">Model/Brand</th>
+            <th scope="col">Glass Type</th>
+            <th scope="col">Depot</th>
+            <th scope="col">Sector</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Created</th>
+            <th scope="col">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of pageSales | paginate: {itemsPerPage: data.pageSize, currentPage: data.page, totalItems: count}; let i = index"
+          [class.active] = "i == currentIndex">
+            <th scope="row">{{s.id}}</th>
+            <td>{{s.productSupplier.product.eurocode}}</td>
+            <td>{{s.productSupplier.supplier.firstName}}</td>
+            <td>{{s.productSupplier.product.model.name}} - {{s.productSupplier.product.model.brand.name}} - {{s.productSupplier.product.years.name}} </td>
+            <td>{{s.productSupplier.product.glassType.name}}</td>
+            <td>{{s.depot.name}}</td>
+            <td>{{s.sector.name}}</td>
+            <td>{{s.quantity}}</td>
+            <td>{{s.created | date: 'short'}}</td>
+            <td>{{s.sellingPrice | currency:'EUR'}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="col-md-12">
+        <pagination-controls previousLabel="Prev" nextLabel="Next" [responsive]="true" (pageChange)="handlePageChange($event)"></pagination-controls>
+      </div>
+      <!-- <div class="col-md-6">
+        <h4>Stocks</h4>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let s of stocks | paginate: {itemsPerPage: pageSize, currentPage: page, totalItems: count}; let i = index"
+            [class.active] = "i == currentIndex"> {{s.id}}</li>
+        </ul>
+      </div> -->
+
+      <div class="mt-3">
+        Items Per Page:
+        <select (change)="handlePageSizeChange($event)">
+          <option *ngFor="let size of pageSizes" [ngValue]="size">{{size}}</option>
+        </select>
+      </div>
+      <h2>Total: {{total | currency:'EUR'}}</h2>
+</div>

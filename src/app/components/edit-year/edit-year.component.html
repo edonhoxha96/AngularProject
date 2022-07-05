@@ -1,0 +1,14 @@
+<div class="col-md-6">
+    <h2 class="text-center">Edit Sector</h2>
+    <form #editYear="ngForm" (ngSubmit)="onUpdateYear(editYear)">
+
+      <div class="form-group">
+        <input type="hidden" name="id" ngModel="{{year?.id}}" class="form-control" id="id" required>
+        <label for="name">Name:</label>
+        <input type="text" name="name" ngModel="{{year?.name}}" class="form-control" id="name" required>
+      </div>
+
+      <button button class="btn btn-success">Update</button>
+      <button class="btn btn-danger ml-2 " (click)="onCancel()">Cancel</button>
+    </form>
+  </div>
